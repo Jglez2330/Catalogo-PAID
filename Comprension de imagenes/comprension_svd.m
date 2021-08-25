@@ -7,7 +7,16 @@ function A = aproximage(U,S,V,r)
     A = U(:,1:r) * S(1:r,1:r) * V(:,1:r)';
 endfunction
 
-I_color = imread('../Imagenes/barbara.png');
+function save_matrices(U,S,V,r,nameB,nameC)
+    B = U(:,1:r) * S(1:r,1:r);
+    C = V(:,1:r)';
+    B = im2uint8(B);
+    C = im2uint8(C);
+    save(nameB, 'B');
+    save(nameC, 'C');
+endfunction
+
+I_color = imread('../Imagenes/Barbara.png');
 [m,n,c] = size(I_color)
 Aog = im2double(I_color);
 
@@ -26,12 +35,9 @@ Abr = aproximage(Ub,Sb,Vb,r);
 
 Afinal = cat(3,Arr,Agr,Abr);
 
-B = Ur(:,1:r) * Sr(1:r,1:r);
-C = Vr(:,1:r)';
-B = im2uint8(B);
-C = im2uint8(C);
-save('B.mat', 'B');
-save('C.mat', 'C');
+save_matrices(Ur,Sr,Vr,r,'Br.mat','Cr.mat');
+save_matrices(Ug,Sg,Vg,r,'Bg.mat','Cg.mat');
+save_matrices(Ub,Sb,Vb,r,'Bb.mat','Cb.mat');
 
 Aplot = im2uint8(Afinal); % Convertir a 8 bits para representar 
 figure
