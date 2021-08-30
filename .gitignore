@@ -131,3 +131,4 @@ dmypy.json
 /.idea/
 octave-workspace
 .DS_Store
+/.vscode/
