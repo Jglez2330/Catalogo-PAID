@@ -1,23 +1,36 @@
-clear;
-clc;
-close all;
-pkg load image;
+function ejemploTransformacionAutocontraste
+  % Ejemplo
+  
+  pkg load image;
+  clear;
+  clc;
+  close all;
+  
+  transformacionAutocontraste();
+  
+endfunction
 
-A = imread('../../Imagenes/boat_new.jpg');
-subplot(1, 2, 1);
-imshow(A);
-title('Imagen Original');
+function transformacionAutocontraste
+  % Esta funcion aplica una transformacion de autocontraste a una imagen 
+  % en escala de grises, con el fin de modificar su contraste
+  
+  A = imread('../../Imagenes/boat_new.jpg');
+  subplot(1, 2, 1);
+  imshow(A);
+  title('Imagen Original');
 
-A = double(A);
-[m, n] = size(A);
-B = zeros(m, n);
+  A = double(A);
+  [m, n] = size(A);
+  B = zeros(m, n);
 
-rmin = min(min(A));
-rmax = max(max(A));
+  rmin = min(min(A));
+  rmax = max(max(A));
 
-B = (255 / (rmax - rmin)) * (A - rmin);
+  B = (255 / (rmax - rmin)) * (A - rmin);
 
-B = uint8(B);
-subplot(1, 2, 2);
-imshow(B);
-title('Imagen Modificada');
+  B = uint8(B);
+  subplot(1, 2, 2);
+  imshow(B);
+  title('Imagen Modificada');
+  
+endfunction
