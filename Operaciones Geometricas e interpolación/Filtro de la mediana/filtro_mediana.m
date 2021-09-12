@@ -4,6 +4,15 @@ close all;
 pkg load image;
 
 function A_filtered = median_filter(A)
+    %Esta funcion filtra una imagen A usando el filtro de mediana
+    %
+    %Sintaxis: median_filter(A)
+    %
+    %Entrada:
+    %    A -> Matrix de la imagen de entrada
+    %
+    %Salida:
+    %    Matriz de la imagen de entrada con el filtro aplicado
     [m, n] = size(A);
     A = padarray(A, [1, 1], 0, 'both');
     A_filtered = zeros(m, n);

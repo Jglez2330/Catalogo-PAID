@@ -5,6 +5,16 @@ import math
 
 
 def rippling(A, Lx, Ly):
+    """
+    Esta funcion que crea una animacion de onda en una imagen
+    Sintaxis: rippling(A, Lx, Ly)
+    Entrada:
+        A -> Matriz de una imagen
+        Lx -> Longitud en X de la onda
+        Ly -> Longitud en Y de la onda
+    Salida:
+        Animacion del rippling de la imagen de entrada
+    """
     m, n, c = np.shape(A)
     fig, (ax1, ax2) = plt.subplots(1, 2)
     im1 = ax1.imshow(cv2.cvtColor(A, cv2.COLOR_BGR2RGB))
@@ -12,7 +22,7 @@ def rippling(A, Lx, Ly):
     ax2.imshow(cv2.cvtColor(A, cv2.COLOR_BGR2RGB))
     ax2.set_title('Transformación Rippling')
     plt.ion()
-    for k in range(5, 200, 1):
+    for k in range(5, 200, 5):
         Ax = k
         Ay = k
         B = np.zeros((m, n, c))
@@ -29,4 +39,4 @@ def rippling(A, Lx, Ly):
 
 
 I_color = cv2.imread('../../Imagenes/shrek.jpg')
-rippling(I_color, 100, 5)
+rippling(I_color, 1, 100)

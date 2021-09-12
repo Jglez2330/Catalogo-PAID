@@ -4,6 +4,16 @@ import matplotlib.pyplot as plt
 import math
 
 def traslacion(A, delta_x, delta_y):
+    """
+    Esta funcion traslada una imagen X y Y pixeles
+    Sintaxis: traslacion(A, delta_x, delta_y)
+    Entrada:
+        A -> Matriz de la imagen que se va a trasladar
+        delta_x -> Cantidad de pixeles a los que se va mover la imagen en X
+        delta_y -> Cantidad de pixeles a los que se va mover la imagen en y
+    Salida:
+        Matriz de la imagen trasladada
+    """
     m, n, c = np.shape(A)
     B = np.zeros((m, n, c))
     for i in range(m):
@@ -16,6 +26,15 @@ def traslacion(A, delta_x, delta_y):
 
 
 def rotacion(A, angulo):
+    """
+    Esta funcion rota una imagen un angulo en grados
+    Sintaxis: rotacion(A, angulo)
+    Entrada:
+        A -> Matriz de la imagen que se va a rotar
+        angulo -> Cantidad de grados que se va a rotar la imagen
+    Salida:
+        Matriz de la imagen rotada
+    """
     angulo = math.radians(angulo)
     m, n, c = np.shape(A)
     B = np.zeros((m, n, c))
@@ -30,7 +49,7 @@ def rotacion(A, angulo):
                 B[new_x, new_y, :] = A[i, j, :]
     return B
 
-I_color = cv2.imread("../Imagenes/Barbara.png")
+I_color = cv2.imread("../../Imagenes/Barbara.png")
 A_res = traslacion(np.array(I_color), 100, 200)
 A_res = rotacion(A_res, 45)
 A_res = cv2.GaussianBlur(A_res, (5,5), 0)
