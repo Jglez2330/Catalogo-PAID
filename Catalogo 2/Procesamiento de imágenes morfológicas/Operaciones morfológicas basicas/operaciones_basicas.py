@@ -50,6 +50,6 @@ B = cv2.imread('../../Imagenes/block.jpg', cv2.IMREAD_GRAYSCALE)
 
 I = interseccion(A, B)
 U = union(A, B)
-D = diferencia(A, B)
+D = diferencia(B, A)
 
 plot(A, B, C, U, I, D, Texto)
