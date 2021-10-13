@@ -1,0 +1,5 @@
+clc;clear;close all;pkg load image;m = 20;n = 30;A = rand(m, n);subplot(3, 3, 1);imshow(A);title('Original');F = zeros(m, n);for u = 1:m  for v = 1:n    for x = 0:m-1      for y = 0:n-1        F(u, v) += A(x + 1, y + 1) * exp(-1i * 2 * pi * ((u * x / m) + (v * y / n)));
+      endfor
+    endfor
+  endfor
+endfortest1 = abs(F);test2 = log(1 + test1);test2min = min(min(test2));test2max = max(max(test2));test3 = im2uint8((test2 - test2min) / (test2max - test2min));subplot(3, 3, 2);imshow(test1);title('Fourier normal');subplot(3, 3, 5);imshow(test2, []);title('Fourier log');subplot(3, 3, 8);imshow(test3);title('Fourier log y uint8');test4 = fftshift(F);test5 = abs(test4)test6 = log(1 + test5);subplot(3, 3, 3);imshow(test5);title('Fourier shift');subplot(3, 3, 6);imshow(test6, []);title('Fourier shift log');test6min = min(min(test6));test6max = max(max(test6));test7 = im2uint8((test6 - test6min) / (test6max - test6min));subplot(3, 3, 9);imshow(test7);title('Fourier shift log y uint8');
