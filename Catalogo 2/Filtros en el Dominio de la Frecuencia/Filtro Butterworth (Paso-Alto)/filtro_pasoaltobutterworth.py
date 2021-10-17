@@ -57,4 +57,5 @@ def filtroPasoAltoButterworth(D0, o):
     return
 
 # Ejemplo
+np.seterr(divide='ignore', invalid='ignore')
 filtroPasoAltoButterworth(80, 2)
